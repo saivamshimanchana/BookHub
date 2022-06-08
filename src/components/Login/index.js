@@ -12,6 +12,8 @@ class Login extends Component {
     errorMsg: '',
   }
 
+  // stores the username and password in the state
+
   onChangeUsername = event => {
     this.setState({username: event.target.value})
   }
@@ -19,6 +21,8 @@ class Login extends Component {
   onChangePassword = event => {
     this.setState({password: event.target.value})
   }
+
+  // on successful response
 
   onSubmitSuccess = jwtToken => {
     const {history} = this.props
@@ -28,6 +32,8 @@ class Login extends Component {
     })
     history.replace('/')
   }
+
+  // on failure response
 
   onSubmitFailure = errorMsg => {
     this.setState({showSubmitError: true, errorMsg})
@@ -50,6 +56,8 @@ class Login extends Component {
       this.onSubmitFailure(data.error_msg)
     }
   }
+
+  // renders the password filed
 
   renderPasswordField = () => {
     const {password} = this.state
