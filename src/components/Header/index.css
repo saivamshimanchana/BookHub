@@ -1,28 +1,33 @@
 .navbar-container {
-  width: 1440px;
+  width: 100%;
   height: 89px;
   background-color: #ffffff;
   display: flex;
   justify-content: center;
 }
 .navbar-responsive {
-  width: 80%;
+  width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.company-logo-container {
-  margin-top: 24px;
-  margin-bottom: 24px;
-  width: 133px;
-  height: 41px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  text-align: center;
+}
+.nav-bar-large-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+}
+.company-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: #0284c7;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 .company-logo {
   width: 46.13px;
@@ -37,10 +42,48 @@
   line-height: 24px;
   text-align: center;
 }
-.nav-bar-list {
-  width: 30%;
-  list-style-type: none;
+.nav-menu {
+  padding: 0px;
+  margin: 0px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
+  list-style-type: none;
+  height: 100%;
+  width: 25%;
+}
+.nav-link {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.nav-menu-item {
+  width: 46px;
+  height: 24px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  margin-right: 25px;
+}
+.active-tab {
+  color: #0284c7;
+}
+.logout-desktop-btn {
+  width: 73px;
+  height: 32px;
+  background: #0284c7;
+  border-radius: 4px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f8fafc;
+  outline: none;
+  border: none;
+  padding: 8px 16px;
+  gap: 8px;
+  margin-left: 45px;
 }
