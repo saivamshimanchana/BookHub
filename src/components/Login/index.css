@@ -54,7 +54,6 @@
   .form-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-radius: 0px;
     width: 85%;
     height: 70%;
@@ -219,7 +218,7 @@
 }
 
 .login-btn-container {
-  width: 100%;
+  width: 360px;
   height: 56px;
   border-radius: 8px;
   margin-right: 70px;
@@ -227,6 +226,17 @@
   margin-bottom: 27px;
   margin-top: 32px;
 }
+
+@media screen and (max-width: 576px) {
+  .login-btn-container {
+    width: 100%;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-bottom: 27px;
+    margin-top: 32px;
+  }
+}
+
 .login-button {
   background: #0284c7;
   border-radius: 8px;
@@ -252,4 +262,9 @@
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left: 69px;
+}
+@media screen and (max-width: 576px) {
+  .error-message {
+    margin-left: 0px;
+  }
 }
