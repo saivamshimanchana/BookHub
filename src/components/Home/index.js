@@ -1,5 +1,11 @@
+import {Component} from 'react'
+import Header from '../Header'
 import './index.css'
 
-const Home = () => <h1>Home component</h1>
+class Home extends Component {
+  render() {
+    return <Header />
+  }
+}
 
 export default Home

@@ -112,19 +112,23 @@ class Login extends Component {
         <img
           src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1654138677/Loginpage-img_zswrqc.png"
           className="login-website-logo-img"
-          alt="website login"
+          alt="login website logo"
         />
         <form className="form-container" onSubmit={this.submitForm}>
-          <div className="company-logo-container">
+          <div className="login-logo-container">
             <img
               src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1654146640/Bookhub-logo_mgfumk.png"
               className="company-logo"
-              alt="website logo"
+              alt="website login"
             />
             <p className="company-text">OOK HUB</p>
           </div>
-          <div className="input-container">{this.renderUsernameField()}</div>
-          <div className="input-container">{this.renderPasswordField()}</div>
+          <div className="input-username-container">
+            {this.renderUsernameField()}
+          </div>
+          <div className="input-password-container">
+            {this.renderPasswordField()}
+          </div>
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
           <div className="login-btn-container">
             <button className="login-button" type="submit">

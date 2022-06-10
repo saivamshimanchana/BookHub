@@ -1,0 +1,46 @@
+.navbar-container {
+  width: 1440px;
+  height: 89px;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+.navbar-responsive {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.company-logo-container {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 133px;
+  height: 41px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #0284c7;
+}
+.company-logo {
+  width: 46.13px;
+  height: 41px;
+}
+.company-text {
+  height: 17px;
+  font-family: 'Almendra SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+.nav-bar-list {
+  width: 30%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
