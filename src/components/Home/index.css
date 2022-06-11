@@ -1,3 +1,11 @@
+.loader-container {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .home-body-section {
   background: #e5e5e5;
   width: 100%;
@@ -52,7 +60,7 @@
   margin-top: 36px;
   margin-left: 71px;
 }
-.findbooks-btn {
+.find-books-btn {
   align-items: center;
   padding: 10px 20px;
   gap: 8px;
@@ -71,4 +79,7 @@
   outline: none;
   cursor: pointer;
   border: none;
+}
+.top-rated-books-carousel-container {
+  width: 100%;
 }
