@@ -13,18 +13,24 @@
 }
 
 .slick-item {
-  width: 350px;
+  width: 250px;
   height: 292px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo-image {
-  width: 350px;
+  width: 250px;
   height: 224px;
   border-radius: 4px;
-  margin-left: 24px;
-  margin-right: 24px;
 }
 
+.heading-container {
+  width: 250px;
+  text-align: center;
+}
 .book-title {
   font-family: 'Inter';
   font-style: normal;

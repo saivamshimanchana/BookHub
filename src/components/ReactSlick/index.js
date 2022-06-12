@@ -8,7 +8,7 @@ const settings = {
   dots: false,
   infinite: false,
   speed: 500,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   responsive: [
     {
@@ -42,7 +42,7 @@ class ReactSlick extends Component {
         const {id, authorName, coverPic, title} = eachLogo
         return (
           <div className="slick-item" key={id}>
-            <img className="logo-image" src={coverPic} alt="company logo" />
+            <img className="logo-image" src={coverPic} alt={title} />
             <div className="heading-container">
               <h1 className="book-title">{title}</h1>
               <p className="author">{authorName}</p>

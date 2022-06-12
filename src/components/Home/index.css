@@ -1,3 +1,6 @@
+.home-container {
+  width: 1440px;
+}
 .loader-container {
   width: 100%;
   height: 90vh;
@@ -34,7 +37,6 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 32px;
-
   color: #475569;
 }
 .top-rated-books-container {

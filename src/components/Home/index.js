@@ -25,7 +25,7 @@ class Home extends Component {
   }
 
   fetchTopRatedBooks = async () => {
-    console.log('inside fetchTopRatedBooks')
+    // console.log('inside fetchTopRatedBooks')
     const apiUrl = 'https://apis.ccbp.in/book-hub/top-rated-books'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -76,7 +76,7 @@ class Home extends Component {
   render() {
     const {isLoading, companyLogosData} = this.state
     return (
-      <>
+      <div className="home-container">
         <Header />
         {isLoading ? (
           <div className="loader-container" testid="loader">
@@ -114,7 +114,7 @@ class Home extends Component {
             <Footer />
           </div>
         )}
-      </>
+      </div>
     )
   }
 }
