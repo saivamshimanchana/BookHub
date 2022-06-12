@@ -1,9 +1,10 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
+
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
-
+import Footer from '../Footer'
 import './index.css'
 
 class Home extends Component {
@@ -24,7 +25,7 @@ class Home extends Component {
   }
 
   fetchTopRatedBooks = async () => {
-    // this.setState({isLoading: false})
+    console.log('inside fetchTopRatedBooks')
     const apiUrl = 'https://apis.ccbp.in/book-hub/top-rated-books'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -46,6 +47,30 @@ class Home extends Component {
     if (response.ok === true) {
       this.onSuccessResponse(updatedData)
     }
+  }
+
+  renderFailureView = () => (
+    <div className="homepage-failure-view">
+      <img
+        src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
+        alt="failure view"
+      />
+      <h1 className="failure-view-heading">
+        Something went wrong, Please try again.
+      </h1>
+      <button
+        type="submit"
+        className="retry-btn"
+        onClick={this.fetchTopRatedBooks}
+      >
+        Retry
+      </button>
+    </div>
+  )
+
+  onClickFindBooksBtn = () => {
+    const {history} = this.props
+    history.push('/bookshelves')
   }
 
   render() {
@@ -70,14 +95,23 @@ class Home extends Component {
             <div className="top-rated-books-container">
               <div className="top-rated-books-heading-container">
                 <h1 className="find-books-heading">Top Rated Books</h1>
-                <button type="button" className="find-books-btn">
+                <button
+                  type="button"
+                  className="find-books-btn"
+                  onClick={this.onClickFindBooksBtn}
+                >
                   Find Books
                 </button>
               </div>
               <div className="top-rated-books-carousel-container">
-                <ReactSlick companyLogosData={companyLogosData} />
+                {companyLogosData.length === 0 ? (
+                  this.renderFailureView()
+                ) : (
+                  <ReactSlick companyLogosData={companyLogosData} />
+                )}
               </div>
             </div>
+            <Footer />
           </div>
         )}
       </>

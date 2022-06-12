@@ -43,6 +43,10 @@ class ReactSlick extends Component {
         return (
           <div className="slick-item" key={id}>
             <img className="logo-image" src={coverPic} alt="company logo" />
+            <div className="heading-container">
+              <h1 className="book-title">{title}</h1>
+              <p className="author">{authorName}</p>
+            </div>
           </div>
         )
       })}
@@ -53,7 +57,6 @@ class ReactSlick extends Component {
     const {companyLogosData} = this.props
     return (
       <div className="main-container">
-        <h1>Company Logos</h1>
         <div className="slick-container">
           {this.renderSlider(companyLogosData)}
         </div>

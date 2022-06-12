@@ -29,6 +29,10 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+.company-header-logo-container {
+  display: flex;
+  align-items: center;
+}
 .company-logo {
   width: 46.13px;
   height: 41px;

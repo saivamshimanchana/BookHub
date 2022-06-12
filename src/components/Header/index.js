@@ -15,13 +15,15 @@ const Header = props => {
         <div className="nav-bar-large-container">
           <div className="company-logo-container">
             <Link to="/" className="nav-link">
-              <img
-                src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1654146640/Bookhub-logo_mgfumk.png"
-                className="company-logo"
-                alt="website login"
-              />
+              <div className="company-header-logo-container">
+                <img
+                  src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1654146640/Bookhub-logo_mgfumk.png"
+                  className="company-logo"
+                  alt="website login"
+                />
+                <p className="company-text">OOK HUB</p>
+              </div>
             </Link>
-            <p className="company-text">OOK HUB</p>
           </div>
           <ul className="nav-menu">
             <li className="nav-menu-item">
