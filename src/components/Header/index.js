@@ -19,7 +19,7 @@ const Header = props => {
                 <img
                   src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1654146640/Bookhub-logo_mgfumk.png"
                   className="company-logo"
-                  alt="website login"
+                  alt="website logo"
                 />
                 <p className="company-text">OOK HUB</p>
               </div>

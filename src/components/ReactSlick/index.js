@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Slider from 'react-slick'
 
 /* Add css to your project */
@@ -41,13 +42,15 @@ class ReactSlick extends Component {
       {companyLogosData.map(eachLogo => {
         const {id, authorName, coverPic, title} = eachLogo
         return (
-          <div className="slick-item" key={id}>
-            <img className="logo-image" src={coverPic} alt={title} />
-            <div className="heading-container">
-              <h1 className="book-title">{title}</h1>
-              <p className="author">{authorName}</p>
+          <Link className="slick-item-link" to={`/books/${id}`}>
+            <div className="slick-item" key={id}>
+              <img className="logo-image" src={coverPic} alt={title} />
+              <div className="heading-container">
+                <h1 className="book-title">{title}</h1>
+                <p className="author">{authorName}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         )
       })}
     </Slider>

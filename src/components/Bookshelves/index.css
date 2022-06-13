@@ -2,6 +2,13 @@
   width: 1440px;
   background: #e5e5e5;
 }
+.book-shelves-footer-section {
+  background-color: #e5e5e5;
+  align-self: flex-end;
+  width: 100%;
+  margin-bottom: 104px;
+  margin-top: 95px;
+}
 .bookshelves-body-container {
   flex-grow: 1;
   width: 100%;
@@ -62,6 +69,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  background-color: #e5e5e5;
 }
 .success-view-heading-container {
   display: flex;
@@ -131,12 +139,15 @@
   display: flex;
   flex-direction: row;
 }
+.book-item-link {
+  text-decoration: none;
+  width: 50%;
+}
 .book-item-container {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  width: 50%;
   height: 155px;
   margin-bottom: 24px;
 }
@@ -197,7 +208,4 @@
 }
 .status {
   color: #0284c7;
-}
-.bookshelves-footer {
-  background-color: transparent;
 }

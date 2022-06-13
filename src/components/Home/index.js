@@ -111,7 +111,9 @@ class Home extends Component {
                 )}
               </div>
             </div>
-            <Footer />
+            <div className="home-footer-section">
+              <Footer />
+            </div>
           </div>
         )}
       </div>

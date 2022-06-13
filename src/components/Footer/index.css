@@ -3,21 +3,20 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background: #e5e5e5;
-  margin-top: 125px;
-  margin-bottom: 25px;
+  align-self: flex-end;
+  background-color: transparent;
 }
 .footer-responsive {
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #3d3c3c;
+  background-color: transparent;
 }
 .footer-nav-btn {
   outline: none;
   cursor: pointer;
   border: none;
-  background: #e5e5e5;
+  background-color: transparent;
 }
 .icon-styles {
   font-family: 'Font Awesome 5 Brands';
@@ -26,7 +25,7 @@
   font-size: 18px;
   line-height: 21px;
   margin-right: 24px;
-  background-color: transparent;
+  color: #3d3c3c;
 }
 .contact-us {
   font-family: 'HK Grotesk';
@@ -34,4 +33,5 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
+  color: #3d3c3c;
 }

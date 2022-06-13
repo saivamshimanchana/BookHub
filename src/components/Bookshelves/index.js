@@ -2,6 +2,7 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsSearch, BsFillStarFill} from 'react-icons/bs'
+import {Link} from 'react-router-dom'
 import Header from '../Header'
 import Footer from '../Footer'
 import './index.css'
@@ -42,6 +43,7 @@ class Bookshelves extends Component {
     searchText: '',
     booksDataList: [],
     apiStatus: apiStatusConstants.initial,
+    readStatus: 'All',
   }
 
   componentDidMount() {
@@ -71,7 +73,7 @@ class Bookshelves extends Component {
     const response = await fetch(apiUrl, options)
     const data = await response.json()
     const booksData = data.books
-    console.log(booksData.length)
+    // console.log(booksData.length)
     const updatedData = booksData.map(eachBookItem => ({
       id: eachBookItem.id,
       authorName: eachBookItem.author_name,
@@ -93,11 +95,12 @@ class Bookshelves extends Component {
   )
 
   onClickUpdateBookshelf = event => {
-    const {value} = event.target
+    const {value, id} = event.target
     this.setState(
       {
         bookshelfName: value,
         searchText: '',
+        readStatus: id,
       },
       this.fetchBooks,
     )
@@ -113,28 +116,31 @@ class Bookshelves extends Component {
   renderBookItem = eachBookItem => {
     const {id, authorName, coverPic, title, readStatus, rating} = eachBookItem
     return (
-      <li key={id} className="book-item-container">
-        <img src={coverPic} alt={title} className="book-cover-image" />
-        <div className="book-item-details">
-          <h1 className="book-title">{title}</h1>
-          <p className="book-author">{authorName}</p>
-          <p className="book-rating">
-            Avg Rating <BsFillStarFill className="star-icon" /> {rating}
-          </p>
-          <p className="book-status">
-            Status: <span className="status">{readStatus}</span>
-          </p>
-        </div>
-      </li>
+      <Link className="book-item-link" to={`/books/${id}`}>
+        <li key={id} className="book-item-container">
+          <img src={coverPic} alt={title} className="book-cover-image" />
+          <div className="book-item-details">
+            <h1 className="book-title">{title}</h1>
+            <p className="book-author">{authorName}</p>
+            <p className="book-rating">
+              Avg Rating <BsFillStarFill className="star-icon" /> {rating}
+            </p>
+            <p className="book-status">
+              Status: <span className="status">{readStatus}</span>
+            </p>
+          </div>
+        </li>
+      </Link>
     )
   }
 
   renderSuccessView = () => {
-    const {booksDataList} = this.state
+    const {booksDataList, readStatus} = this.state
+
     return (
       <div className="success-view-container">
         <div className="success-view-heading-container">
-          <h1 className="success-view-heading">All Books</h1>
+          <h1 className="success-view-heading">{readStatus} Books</h1>
           <div className="search-container">
             <input
               type="search"
@@ -157,7 +163,9 @@ class Bookshelves extends Component {
         <ul className="book-items-list">
           {booksDataList.map(eachBookItem => this.renderBookItem(eachBookItem))}
         </ul>
-        <Footer />
+        <div className="book-shelves-footer-section">
+          <Footer />
+        </div>
       </div>
     )
   }
@@ -190,6 +198,7 @@ class Bookshelves extends Component {
                   className="sidebar-item-btn"
                   onClick={this.onClickUpdateBookshelf}
                   value={eachItem.value}
+                  id={eachItem.label}
                 >
                   {eachItem.label}
                 </button>
