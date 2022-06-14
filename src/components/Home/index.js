@@ -1,10 +1,10 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-
+import {FaGoogle, FaTwitter, FaYoutube, FaInstagram} from 'react-icons/fa'
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
-import Footer from '../Footer'
+
 import './index.css'
 
 class Home extends Component {
@@ -73,6 +73,28 @@ class Home extends Component {
     history.push('/bookshelves')
   }
 
+  renderFooter = () => (
+    <div className="footer-section">
+      <div className="footer-responsive">
+        <div>
+          <button type="button" className="footer-nav-btn">
+            <FaGoogle className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaTwitter className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaYoutube className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaInstagram className="icon-styles" />
+          </button>
+        </div>
+        <p className="contact-us">Contact Us</p>
+      </div>
+    </div>
+  )
+
   render() {
     const {isLoading, companyLogosData} = this.state
     return (
@@ -111,9 +133,7 @@ class Home extends Component {
                 )}
               </div>
             </div>
-            <div className="home-footer-section">
-              <Footer />
-            </div>
+            <div className="home-footer-section">{this.renderFooter()}</div>
           </div>
         )}
       </div>

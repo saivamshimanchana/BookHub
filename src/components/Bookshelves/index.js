@@ -2,9 +2,10 @@ import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsSearch, BsFillStarFill} from 'react-icons/bs'
+import {FaGoogle, FaTwitter, FaYoutube, FaInstagram} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import Header from '../Header'
-import Footer from '../Footer'
+
 import './index.css'
 
 const bookshelvesList = [
@@ -57,6 +58,12 @@ class Bookshelves extends Component {
     })
   }
 
+  onFailureResponse = () => {
+    this.setState({
+      apiStatus: apiStatusConstants.failure,
+    })
+  }
+
   fetchBooks = async () => {
     this.setState({
       apiStatus: apiStatusConstants.inprogress,
@@ -74,6 +81,9 @@ class Bookshelves extends Component {
     const data = await response.json()
     const booksData = data.books
     // console.log(booksData.length)
+    if (response.ok !== true) {
+      this.onFailureResponse()
+    }
     const updatedData = booksData.map(eachBookItem => ({
       id: eachBookItem.id,
       authorName: eachBookItem.author_name,
@@ -134,10 +144,65 @@ class Bookshelves extends Component {
     )
   }
 
-  renderSuccessView = () => {
-    const {booksDataList, readStatus} = this.state
+  renderFooter = () => (
+    <div className="footer-section">
+      <div className="footer-responsive">
+        <div>
+          <button type="button" className="footer-nav-btn">
+            <FaGoogle className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaTwitter className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaYoutube className="icon-styles" />
+          </button>
+          <button type="button" className="footer-nav-btn">
+            <FaInstagram className="icon-styles" />
+          </button>
+        </div>
+        <p className="contact-us">Contact Us</p>
+      </div>
+    </div>
+  )
 
-    return (
+  renderSuccessView = () => {
+    const {booksDataList, readStatus, searchText} = this.state
+
+    return booksDataList.length === 0 ? (
+      <div className="success-view-container">
+        <div className="success-view-heading-container">
+          <h1 className="success-view-heading">{readStatus} Books</h1>
+          <div className="search-container">
+            <input
+              type="search"
+              className="search-input"
+              placeholder="Search"
+              onChange={this.onSearchInputChange}
+            />
+            <div className="search-btn-container">
+              <button
+                type="button"
+                testid="searchButton"
+                className="search-btn"
+                onClick={this.fetchBooks}
+              >
+                <BsSearch className="search-icon" />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="bookshelves-no-matches-view">
+          <img
+            src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655183620/Results-not-found_aqemoc.png"
+            alt="No Books View"
+          />
+          <h1 className="bookshelves-no-matches-heading">
+            Your search for {searchText} did not find any matches.
+          </h1>
+        </div>
+      </div>
+    ) : (
       <div className="success-view-container">
         <div className="success-view-heading-container">
           <h1 className="success-view-heading">{readStatus} Books</h1>
@@ -163,12 +228,29 @@ class Bookshelves extends Component {
         <ul className="book-items-list">
           {booksDataList.map(eachBookItem => this.renderBookItem(eachBookItem))}
         </ul>
-        <div className="book-shelves-footer-section">
-          <Footer />
-        </div>
+        <div className="book-shelves-footer-section">{this.renderFooter()}</div>
       </div>
     )
   }
+
+  renderFailureView = () => (
+    <div className="bookshelves-failure-view">
+      <img
+        src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
+        alt="failure view"
+      />
+      <h1 className="bookshelves-failure-view-heading">
+        Something went wrong, Please try again.
+      </h1>
+      <button
+        type="submit"
+        className="bookshelves-retry-btn"
+        onClick={this.fetchBooks}
+      >
+        Retry
+      </button>
+    </div>
+  )
 
   renderApiResponse = () => {
     const {apiStatus} = this.state
@@ -192,7 +274,7 @@ class Bookshelves extends Component {
           <ul className="bookshelves-sidebar-container">
             <h1 className="bookshelves-sidebar-heading">Bookshelves</h1>
             {bookshelvesList.map(eachItem => (
-              <li key={eachItem.id} className="sidebar-list-item">
+              <li key={eachItem.title} className="sidebar-list-item">
                 <button
                   type="button"
                   className="sidebar-item-btn"

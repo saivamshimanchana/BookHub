@@ -12,6 +12,7 @@
 .bookshelves-body-container {
   flex-grow: 1;
   width: 100%;
+  min-height: 935px;
   display: flex;
   flex-direction: row;
   margin-top: 48px;
@@ -61,6 +62,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  align-items: center;
   width: 1034px;
   margin-right: 150px;
   margin-left: 32px;
@@ -208,4 +210,94 @@
 }
 .status {
   color: #0284c7;
+}
+
+/*============= footer styles ============*/
+.footer-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  align-self: flex-end;
+  background-color: transparent;
+}
+.footer-responsive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+.footer-nav-btn {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.icon-styles {
+  font-family: 'Font Awesome 5 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  margin-right: 24px;
+  color: #3d3c3c;
+}
+.contact-us {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #3d3c3c;
+}
+
+/*============failure view styles ==========*/
+.bookshelves-failure-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 190px;
+}
+.bookshelves-failure-view-heading {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #475569;
+}
+.bookshelves-retry-btn {
+  outline: none;
+  cursor: pointer;
+  border: none;
+  padding: 8px 16px;
+  gap: 5.33px;
+  width: 75px;
+  height: 32px;
+  background: #0284c7;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 9.33333px;
+  line-height: 16px;
+  color: #ffffff;
+  margin-bottom: 48px;
+}
+/*==========no matches found============*/
+
+.bookshelves-no-matches-view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+}
+.bookshelves-no-matches-heading {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #334155;
+  text-align: center;
+  margin-top: 48px;
 }
