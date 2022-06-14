@@ -24,29 +24,8 @@ class Home extends Component {
     })
   }
 
-  fetchTopRatedBooks = async () => {
-    // console.log('inside fetchTopRatedBooks')
-    const apiUrl = 'https://apis.ccbp.in/book-hub/top-rated-books'
-    const jwtToken = Cookies.get('jwt_token')
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-    const response = await fetch(apiUrl, options)
-    const data = await response.json()
-    const booksData = data.books
-    const updatedData = booksData.map(eachBookItem => ({
-      id: eachBookItem.id,
-      authorName: eachBookItem.author_name,
-      coverPic: eachBookItem.cover_pic,
-      title: eachBookItem.title,
-    }))
-
-    if (response.ok === true) {
-      this.onSuccessResponse(updatedData)
-    }
+  retryTopRatedBooks = () => {
+    this.fetchTopRatedBooks()
   }
 
   renderFailureView = () => (
@@ -55,22 +34,57 @@ class Home extends Component {
         src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
         alt="failure view"
       />
-      <h1 className="failure-view-heading">
+      <p className="failure-view-heading">
         Something went wrong, Please try again.
-      </h1>
+      </p>
       <button
         type="submit"
         className="retry-btn"
-        onClick={this.fetchTopRatedBooks}
+        onClick={this.retryTopRatedBooks}
       >
-        Retry
+        Try Again
       </button>
     </div>
   )
 
+  fetchTopRatedBooks = async () => {
+    // console.log('inside fetchTopRatedBooks')
+
+    const apiUrl = 'https://apis.ccbp.in/book-hub/top-rated-books/'
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(apiUrl, options)
+    // console.log(response)
+    if (response.ok === true) {
+      const data = await response.json()
+      const booksData = data.books
+      const updatedData = booksData.map(eachBookItem => ({
+        id: eachBookItem.id,
+        authorName: eachBookItem.author_name,
+        coverPic: eachBookItem.cover_pic,
+        title: eachBookItem.title,
+      }))
+
+      this.onSuccessResponse(updatedData)
+    }
+    if (response.status === 400) {
+      this.setState(
+        {
+          isLoading: false,
+        },
+        this.retryTopRatedBooks,
+      )
+    }
+  }
+
   onClickFindBooksBtn = () => {
     const {history} = this.props
-    history.push('/bookshelves')
+    history.push('/shelf')
   }
 
   renderFooter = () => (

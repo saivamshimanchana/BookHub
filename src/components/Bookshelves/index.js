@@ -41,7 +41,7 @@ const apiStatusConstants = {
 class Bookshelves extends Component {
   state = {
     bookshelfName: 'ALL',
-    searchText: '',
+    searchValue: '',
     booksDataList: [],
     apiStatus: apiStatusConstants.initial,
     readStatus: 'All',
@@ -68,8 +68,8 @@ class Bookshelves extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inprogress,
     })
-    const {bookshelfName, searchText} = this.state
-    const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchText}`
+    const {bookshelfName, searchValue} = this.state
+    const apiUrl = `https://apis.ccbp.in/book-hub/books?shelf=${bookshelfName}&search=${searchValue}`
     const jwtToken = Cookies.get('jwt_token')
     const options = {
       method: 'GET',
@@ -78,23 +78,25 @@ class Bookshelves extends Component {
       },
     }
     const response = await fetch(apiUrl, options)
-    const data = await response.json()
-    const booksData = data.books
-    // console.log(booksData.length)
-    if (response.ok !== true) {
-      this.onFailureResponse()
-    }
-    const updatedData = booksData.map(eachBookItem => ({
-      id: eachBookItem.id,
-      authorName: eachBookItem.author_name,
-      coverPic: eachBookItem.cover_pic,
-      title: eachBookItem.title,
-      readStatus: eachBookItem.read_status,
-      rating: eachBookItem.rating,
-    }))
-    // console.log(updatedData)
+    // console.log(response)
     if (response.ok === true) {
+      const data = await response.json()
+      const booksData = data.books
+      const updatedData = booksData.map(eachBookItem => ({
+        id: eachBookItem.id,
+        authorName: eachBookItem.author_name,
+        coverPic: eachBookItem.cover_pic,
+        title: eachBookItem.title,
+        readStatus: eachBookItem.read_status,
+        rating: eachBookItem.rating,
+      }))
+
       this.onSuccessResponse(updatedData)
+    }
+    if (response.status === 400) {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
 
@@ -109,7 +111,7 @@ class Bookshelves extends Component {
     this.setState(
       {
         bookshelfName: value,
-        searchText: '',
+        searchValue: '',
         readStatus: id,
       },
       this.fetchBooks,
@@ -119,14 +121,14 @@ class Bookshelves extends Component {
   onSearchInputChange = event => {
     const {value} = event.target
     this.setState({
-      searchText: value,
+      searchValue: value,
     })
   }
 
   renderBookItem = eachBookItem => {
     const {id, authorName, coverPic, title, readStatus, rating} = eachBookItem
     return (
-      <Link className="book-item-link" to={`/books/${id}`}>
+      <Link className="book-item-link" to={`/books/${id}`} key={id}>
         <li key={id} className="book-item-container">
           <img src={coverPic} alt={title} className="book-cover-image" />
           <div className="book-item-details">
@@ -167,7 +169,7 @@ class Bookshelves extends Component {
   )
 
   renderSuccessView = () => {
-    const {booksDataList, readStatus, searchText} = this.state
+    const {booksDataList, readStatus, searchValue} = this.state
 
     return booksDataList.length === 0 ? (
       <div className="success-view-container">
@@ -197,9 +199,9 @@ class Bookshelves extends Component {
             src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655183620/Results-not-found_aqemoc.png"
             alt="No Books View"
           />
-          <h1 className="bookshelves-no-matches-heading">
-            Your search for {searchText} did not find any matches.
-          </h1>
+          <p className="bookshelves-no-matches-heading">
+            Your search for {searchValue} did not find any matches.
+          </p>
         </div>
       </div>
     ) : (
@@ -233,21 +235,25 @@ class Bookshelves extends Component {
     )
   }
 
+  retryFetchBooks = () => {
+    this.fetchBooks()
+  }
+
   renderFailureView = () => (
     <div className="bookshelves-failure-view">
       <img
         src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
         alt="failure view"
       />
-      <h1 className="bookshelves-failure-view-heading">
+      <p className="bookshelves-failure-view-heading">
         Something went wrong, Please try again.
-      </h1>
+      </p>
       <button
         type="submit"
         className="bookshelves-retry-btn"
-        onClick={this.fetchBooks}
+        onClick={this.retryFetchBooks}
       >
-        Retry
+        Try Again
       </button>
     </div>
   )
@@ -274,7 +280,7 @@ class Bookshelves extends Component {
           <ul className="bookshelves-sidebar-container">
             <h1 className="bookshelves-sidebar-heading">Bookshelves</h1>
             {bookshelvesList.map(eachItem => (
-              <li key={eachItem.title} className="sidebar-list-item">
+              <li key={eachItem.id} className="sidebar-list-item">
                 <button
                   type="button"
                   className="sidebar-item-btn"

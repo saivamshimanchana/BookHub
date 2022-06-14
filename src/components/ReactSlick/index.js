@@ -42,8 +42,8 @@ class ReactSlick extends Component {
       {companyLogosData.map(eachLogo => {
         const {id, authorName, coverPic, title} = eachLogo
         return (
-          <Link className="slick-item-link" to={`/books/${id}`}>
-            <div className="slick-item" key={id}>
+          <Link className="slick-item-link" to={`/books/${id}`} key={id}>
+            <div className="slick-item">
               <img className="logo-image" src={coverPic} alt={title} />
               <div className="heading-container">
                 <h1 className="book-title">{title}</h1>

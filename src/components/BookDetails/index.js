@@ -38,7 +38,7 @@ class BookDetails extends Component {
   }
 
   fetchBookDetails = async () => {
-    console.log('inside fetchBookDetails')
+    // console.log('inside fetchBookDetails')
     this.setState({
       apiStatus: apiStatusConstants.inprogress,
     })
@@ -55,24 +55,29 @@ class BookDetails extends Component {
       },
     }
     const response = await fetch(apiUrl, options)
-    if (response.ok !== true) {
-      this.onFailureResponse()
-    }
-    const data = await response.json()
-    const booksData = data.book_details
 
-    const updatedData = {
-      id: booksData.id,
-      authorName: booksData.author_name,
-      coverPic: booksData.cover_pic,
-      aboutBook: booksData.about_book,
-      rating: booksData.rating,
-      readStatus: booksData.read_status,
-      title: booksData.title,
-      aboutAuthor: booksData.about_author,
-    }
     if (response.ok === true) {
-      this.onSuccessResponse(updatedData)
+      const data = await response.json()
+      const booksData = data.book_details
+      const updatedData = {
+        id: booksData.id,
+        authorName: booksData.author_name,
+        coverPic: booksData.cover_pic,
+        aboutBook: booksData.about_book,
+        rating: booksData.rating,
+        readStatus: booksData.read_status,
+        title: booksData.title,
+        aboutAuthor: booksData.about_author,
+      }
+      this.setState({
+        bookDetails: updatedData,
+        apiStatus: apiStatusConstants.success,
+      })
+    }
+    if (response.status === 400) {
+      this.setState({
+        apiStatus: apiStatusConstants.failure,
+      })
     }
   }
 
@@ -152,21 +157,25 @@ class BookDetails extends Component {
     )
   }
 
+  retryBookDetails = () => {
+    this.fetchBookDetails()
+  }
+
   renderFailureView = () => (
     <div className="book-details-failure-view">
       <img
         src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
         alt="failure view"
       />
-      <h1 className="book-details-failure-view-heading">
-        Something went wrong, Please try again.
-      </h1>
+      <p className="book-details-failure-view-heading">
+        Something went wrong. Please try again
+      </p>
       <button
         type="submit"
         className="book-details-retry-btn"
-        onClick={this.fetchBookDetails}
+        onClick={this.retryBookDetails}
       >
-        Retry
+        Try Again
       </button>
     </div>
   )
@@ -186,8 +195,6 @@ class BookDetails extends Component {
   }
 
   render() {
-    const {apiStatus} = this.state
-
     return (
       <div className="book-details-container">
         <Header />

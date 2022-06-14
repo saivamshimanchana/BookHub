@@ -6,7 +6,7 @@ import Home from './components/Home'
 import Bookshelves from './components/Bookshelves'
 import ProtectedRoute from './components/ProtectedRoute'
 import BookDetails from './components/BookDetails'
-
+import NotFound from './components/NotFound'
 import './App.css'
 
 class App extends Component {
@@ -15,8 +15,9 @@ class App extends Component {
       <Switch>
         <Route exact path="/login" component={Login} />
         <ProtectedRoute exact path="/" component={Home} />
-        <ProtectedRoute exact path="/bookshelves" component={Bookshelves} />
+        <ProtectedRoute exact path="/shelf" component={Bookshelves} />
         <ProtectedRoute exact path="/books/:id" component={BookDetails} />
+        <Route component={NotFound} />
       </Switch>
     )
   }
