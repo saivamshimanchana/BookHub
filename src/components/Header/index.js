@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {Link, withRouter, NavLink} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
 
@@ -28,15 +28,35 @@ class Header extends Component {
               </Link>
             </div>
             <ul className="nav-menu">
-              <li className="nav-menu-item" key="home">
-                <Link to="/" className="nav-link" key="home">
+              <li
+                className="nav-menu-item"
+                key="home"
+                onClick={this.onClickUpdateHomeStyle}
+              >
+                <NavLink
+                  exact
+                  to="/"
+                  className="nav-link"
+                  key="home"
+                  activeClassName="active-tab"
+                >
                   Home
-                </Link>
+                </NavLink>
               </li>
-              <li className="nav-menu-item" value="bookshelf">
-                <Link to="/shelf" className="nav-link" key="bookshelf">
+              <li
+                className="nav-menu-item"
+                value="bookshelf"
+                onClick={this.onClickUpdateBookshelvesStyle}
+              >
+                <NavLink
+                  exact
+                  to="/shelf"
+                  className="nav-link"
+                  key="bookshelf"
+                  activeClassName="active-tab"
+                >
                   Bookshelves
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-menu-item" key="logout-btn">
                 <button

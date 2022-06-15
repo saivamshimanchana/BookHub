@@ -44,7 +44,8 @@ class Bookshelves extends Component {
     searchValue: '',
     booksDataList: [],
     apiStatus: apiStatusConstants.initial,
-    readStatus: 'All',
+    readStatus: bookshelvesList[0].label,
+    activeTab: bookshelvesList[0].id,
   }
 
   componentDidMount() {
@@ -105,18 +106,6 @@ class Bookshelves extends Component {
       <Loader type="TailSpin" color="#0284C7" height={60} width={60} />
     </div>
   )
-
-  onClickUpdateBookshelf = event => {
-    const {value, id} = event.target
-    this.setState(
-      {
-        bookshelfName: value,
-        searchValue: '',
-        readStatus: id,
-      },
-      this.fetchBooks,
-    )
-  }
 
   onSearchInputChange = event => {
     const {value} = event.target
@@ -272,6 +261,44 @@ class Bookshelves extends Component {
     }
   }
 
+  onClickUpdateBookshelf = event => {
+    const {value, id} = event.target
+    const selectedObject = bookshelvesList.filter(
+      eachItem => eachItem.id === id,
+    )
+
+    this.setState(
+      {
+        bookshelfName: value,
+        searchValue: '',
+        readStatus: selectedObject[0].label,
+        activeTab: id,
+      },
+      this.fetchBooks,
+    )
+  }
+
+  renderSidebarItem = eachItem => {
+    const {activeTab} = this.state
+    const isActive = activeTab === eachItem.id
+    const className = isActive
+      ? 'sidebar-item-btn active-tab'
+      : 'sidebar-item-btn'
+    return (
+      <li key={eachItem.id} className="sidebar-list-item">
+        <button
+          type="button"
+          className={className}
+          onClick={this.onClickUpdateBookshelf}
+          value={eachItem.value}
+          id={eachItem.id}
+        >
+          {eachItem.label}
+        </button>
+      </li>
+    )
+  }
+
   render() {
     return (
       <div className="bookshelves-container">
@@ -279,19 +306,7 @@ class Bookshelves extends Component {
         <div className="bookshelves-body-container">
           <ul className="bookshelves-sidebar-container">
             <h1 className="bookshelves-sidebar-heading">Bookshelves</h1>
-            {bookshelvesList.map(eachItem => (
-              <li key={eachItem.id} className="sidebar-list-item">
-                <button
-                  type="button"
-                  className="sidebar-item-btn"
-                  onClick={this.onClickUpdateBookshelf}
-                  value={eachItem.value}
-                  id={eachItem.label}
-                >
-                  {eachItem.label}
-                </button>
-              </li>
-            ))}
+            {bookshelvesList.map(eachItem => this.renderSidebarItem(eachItem))}
           </ul>
           <div className="books-display">{this.renderApiResponse()}</div>
         </div>

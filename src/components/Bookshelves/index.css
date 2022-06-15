@@ -9,6 +9,7 @@
   margin-bottom: 104px;
   margin-top: 95px;
 }
+
 .bookshelves-body-container {
   flex-grow: 1;
   width: 100%;
@@ -50,6 +51,11 @@
   outline: none;
   border: none;
   cursor: pointer;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
 }
 .loader-container {
   display: flex;
