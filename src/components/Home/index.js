@@ -128,6 +128,15 @@ class Home extends Component {
                 insightful recommendations.
               </p>
             </div>
+            <div className="find-books-mobile-btn-container">
+              <button
+                type="button"
+                className="find-books-mobile-btn"
+                onClick={this.onClickFindBooksBtn}
+              >
+                Find Books
+              </button>
+            </div>
             <div className="top-rated-books-container">
               <div className="top-rated-books-heading-container">
                 <h1 className="find-books-heading">Top Rated Books</h1>
