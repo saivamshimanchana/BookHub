@@ -303,10 +303,32 @@ class Bookshelves extends Component {
     return (
       <div className="bookshelves-container">
         <Header />
+        <div className="search-container-mobile">
+          <input
+            type="search"
+            className="search-input"
+            placeholder="Search"
+            onChange={this.onSearchInputChange}
+          />
+          <div className="search-btn-container">
+            <button
+              type="button"
+              testid="searchButton"
+              className="search-btn"
+              onClick={this.fetchBooks}
+            >
+              <BsSearch className="search-icon" />
+            </button>
+          </div>
+        </div>
         <div className="bookshelves-body-container">
           <ul className="bookshelves-sidebar-container">
             <h1 className="bookshelves-sidebar-heading">Bookshelves</h1>
-            {bookshelvesList.map(eachItem => this.renderSidebarItem(eachItem))}
+            <div className="sidebar-items-container">
+              {bookshelvesList.map(eachItem =>
+                this.renderSidebarItem(eachItem),
+              )}
+            </div>
           </ul>
           <div className="books-display">{this.renderApiResponse()}</div>
         </div>
