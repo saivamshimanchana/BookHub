@@ -394,11 +394,11 @@
   line-height: 16px;
   color: #475569;
 }
-.active-tab {
+.active-tab-bookshelves {
   color: #0284c7;
 }
 @media screen and (max-width: 576px) {
-  .active-tab {
+  .active-tab-bookshelves {
     background: #0284c7;
     color: #ffffff;
   }
@@ -482,6 +482,24 @@
   align-items: center;
   margin-top: 140px;
 }
+@media screen and (max-width: 576px) {
+  .bookshelves-no-matches-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .bookshelf-no-matches-img {
+    width: 257px;
+    height: 176px;
+    margin-top: 68px;
+  }
+}
+
 .bookshelves-no-matches-heading {
   font-family: 'Inter';
   font-style: normal;
@@ -491,6 +509,13 @@
   color: #334155;
   text-align: center;
   margin-top: 48px;
+}
+@media screen and (max-width: 576px) {
+  .bookshelves-no-matches-heading {
+    font-size: 16px;
+    line-height: 24px;
+    margin-top: 8px;
+  }
 }
 .book-shelves-footer-section {
   background-color: #e5e5e5;

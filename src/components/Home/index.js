@@ -33,6 +33,7 @@ class Home extends Component {
       <img
         src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
         alt="failure view"
+        className="failure-img"
       />
       <p className="failure-view-heading">
         Something went wrong, Please try again.

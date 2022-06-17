@@ -5,6 +5,7 @@
   width: 100%;
   align-self: flex-end;
   background-color: transparent;
+  margin-top: 50px;
 }
 .footer-responsive {
   display: flex;

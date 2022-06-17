@@ -124,9 +124,7 @@
   line-height: 24px;
   margin-right: 25px;
 }
-.active-tab {
-  color: #0284c7;
-}
+
 .logout-desktop-btn {
   width: 73px;
   height: 32px;
@@ -160,6 +158,7 @@
     margin-right: 24px;
     list-style-type: none;
     margin-bottom: 0px;
+    margin-top: 0px;
   }
 }
 @media screen and (max-width: 576px) {
@@ -172,6 +171,7 @@
     line-height: 26px;
     margin-top: 24px;
     margin-right: 16px;
+    background-color: transparent;
   }
 }
 @media screen and (max-width: 576px) {

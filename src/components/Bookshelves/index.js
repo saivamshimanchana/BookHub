@@ -187,6 +187,7 @@ class Bookshelves extends Component {
           <img
             src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655183620/Results-not-found_aqemoc.png"
             alt="No Books View"
+            className="bookshelf-no-matches-img"
           />
           <p className="bookshelves-no-matches-heading">
             Your search for {searchValue} did not find any matches.
@@ -282,7 +283,7 @@ class Bookshelves extends Component {
     const {activeTab} = this.state
     const isActive = activeTab === eachItem.id
     const className = isActive
-      ? 'sidebar-item-btn active-tab'
+      ? 'sidebar-item-btn active-tab-bookshelves'
       : 'sidebar-item-btn'
     return (
       <li key={eachItem.id} className="sidebar-list-item">

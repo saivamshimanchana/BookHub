@@ -166,6 +166,7 @@ class BookDetails extends Component {
       <img
         src="https://res.cloudinary.com/dnnzqsug1/image/upload/v1655015009/Homepage-Failure-img_kbkz4c.png"
         alt="failure view"
+        className="book-details-failure-view-img"
       />
       <p className="book-details-failure-view-heading">
         Something went wrong. Please try again
